@@ -1,0 +1,9 @@
+id: ListPageColumn
+name: List Page Column
+description: A column in a list page
+fields:
+  - name: type
+    description: The type of the column
+    type: reference
+    references: BasicType
+    required: true

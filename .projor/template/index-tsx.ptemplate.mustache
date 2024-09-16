@@ -1,0 +1,49 @@
+{
+    "map": {
+        "pages": "pages"
+    },
+    "filename": "src/index.tsx",
+    "formatUsing": "typescript"
+}
+---
+import { createRoot } from 'react-dom/client';
+import {
+    useState,
+    useEffect,
+    useRef
+} from 'react';
+{{#each pages}}
+import {
+    {{pascalCase name}}Page
+} from "./pages/{{kebabCase name}}.page";
+{{/each}}
+import {
+    LoginPage
+} from "./pages/login.page";
+
+function App() {
+    const [path, setPath] = useState(window.location.pathname);
+    const currentComponentRef = useRef<any>(LoginPage);
+    const [navigationCounter, setNavigationCounter] = useState(0);
+
+    const navigate = (path: string) => {
+        {{#each pages}}
+        if(path === "{{kebabCase name}}" || path === "{{kebabCase name}}-page") {
+            currentComponentRef.current = {{pascalCase name}}Page;
+            setNavigationCounter(navigationCounter + 1);
+            setPath(path);
+        }
+        {{/each}}
+        if(path === "login") {
+            currentComponentRef.current = LoginPage;
+            setNavigationCounter(navigationCounter + 1);
+            setPath(path);
+        }
+    }
+
+    return <currentComponentRef.current navigate={navigate} />;
+}
+
+const appEl = document.getElementById('app');
+const root = createRoot(appEl!);
+root.render(<App />);

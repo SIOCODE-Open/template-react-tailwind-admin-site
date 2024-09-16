@@ -1,0 +1,13 @@
+id: pagetype
+name: Page Types
+description: The supported types of pages in the admin site
+schema: PageType
+objects:
+  - name: Dashboard
+    description: A dashboard page
+  - name: ListPage
+    description: A page that lists items
+  - name: EditPage
+    description: A page that edits an item
+  - name: Unknown
+    description: An unknown page type

@@ -1,0 +1,37 @@
+{
+    "forEach": "pages",
+    "filename": "src/pages/{{kebabCase name}}.page.tsx",
+    "formatUsing": "typescript"
+}
+---
+import { AppLayout } from "../layout/AppLayout.component";
+import { AppAction } from "../components/AppAction.component";
+
+{{#if listPage}}
+{{> list-page-parts page=this }}
+{{/if}}
+
+{{#if editPage}}
+{{> edit-page-parts page=this }}
+{{/if}}
+
+{{#if dashboard}}
+{{> dashboard-parts page=this }}
+{{/if}}
+
+export function {{pascalCase name}}Page(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <AppLayout content={
+        () => (
+            <div className="w-full flex flex-col gap-2 p-4 bg-white">
+                <h1 className="text-4xl text-gray-600 font-bold">{{capitalCase title}}</h1>
+                <h2 className="text-xl text-gray-400 font-serif italic">{{message}}</h2>
+                <hr className="border border-b border-gray-200" />
+                <{{pascalCase name}}Content navigate={opts.navigate} />
+            </div>
+        )
+    } icon={`{{{icon}}}`} navigate={opts.navigate} />;
+}

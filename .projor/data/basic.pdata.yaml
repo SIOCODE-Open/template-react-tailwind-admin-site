@@ -1,0 +1,11 @@
+id: basic
+name: Basic Types
+description: The supported basic types
+schema: BasicType
+objects:
+  - name: string
+    ts: string
+  - name: number
+    ts: number
+  - name: boolean
+    ts: boolean

@@ -1,0 +1,81 @@
+function {{pascalCase page.name}}PreActions(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-row justify-start items-center wrap gap-4">
+        {{#each page.listPage.preActions}}
+        <AppAction to="{{kebabCase goesTo.name}}" name="{{capitalCase name}}" {{#if icon}}icon={`{{{icon}}}`}{{/if}} navigate={opts.navigate} />
+        {{/each}}
+    </div>
+}
+function {{pascalCase page.name}}PostActions(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-row justify-start items-center wrap gap-4">
+        {{#each page.listPage.postActions}}
+        <AppAction to="{{kebabCase goesTo.name}}" name="{{capitalCase name}}" {{#if icon}}icon={`{{{icon}}}`}{{/if}} navigate={opts.navigate} />
+        {{/each}}
+    </div>
+}
+function {{pascalCase page.name}}ItemActions(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-row wrap justify-start items-center gap-2">
+        {{#each page.listPage.itemActions}}
+        <AppAction to="{{kebabCase goesTo.name}}" name="{{capitalCase name}}" {{#if icon}}icon={`{{{icon}}}`}{{/if}} navigate={opts.navigate} small />
+        {{/each}}
+    </div>;
+}
+function {{pascalCase page.name}}Table(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    const values = [
+        {
+            {{#each page.listPage.columns}}
+            {{camelCase name}}: `{{{example}}}`,
+            {{/each}}
+        }
+    ];
+
+    return <table className="w-full">
+        <thead className="border-b border-black">
+            <tr>
+                {{#each page.listPage.columns}}
+                <th className="p-2">{{capitalCase name}}</th>
+                {{/each}}
+                <th className="p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {values.map((value, index) => (
+                <tr key={index} className="border-b border-gray-200 p-2">
+                    {{#each page.listPage.columns}}
+                    <td className="p-2 text-center">{ value.{{camelCase name}} }</td>
+                    {{/each}}
+                    <td className="p-2 text-center">
+                        <{{pascalCase page.name}}ItemActions navigate={opts.navigate} />
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>;
+}
+
+function {{pascalCase page.name}}Content(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="w-full flex flex-col justify-start items-start gap-4">
+        <{{pascalCase page.name}}PreActions navigate={opts.navigate} />
+        <{{pascalCase page.name}}Table navigate={opts.navigate} />
+        <{{pascalCase page.name}}PostActions navigate={opts.navigate} />
+    </div>;
+}

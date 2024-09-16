@@ -1,0 +1,19 @@
+id: EditPage
+name: Edit Page
+description: An edit page, that allows editing of a single item
+fields:
+  - name: fields
+    description: The fields to display in the edit page
+    type: attachment
+    references: EditPageField
+    multiple: true
+  - name: preActions
+    description: Actions to display before the form
+    type: attachment
+    references: Action
+    multiple: true
+  - name: postActions
+    description: Actions to display after the form
+    type: attachment
+    references: Action
+    multiple: true

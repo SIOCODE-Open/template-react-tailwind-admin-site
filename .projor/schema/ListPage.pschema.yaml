@@ -1,0 +1,24 @@
+id: ListPage
+name: List Page
+description: A list page, showing a table of items
+fields:
+  - name: columns
+    description: The columns to display in the list
+    type: attachment
+    references: ListPageColumn
+    multiple: true
+  - name: preActions
+    description: Actions to display before the list
+    type: attachment
+    references: Action
+    multiple: true
+  - name: postActions
+    description: Actions to display after the list
+    type: attachment
+    references: Action
+    multiple: true
+  - name: itemActions
+    description: Actions to display for each item
+    type: attachment
+    references: Action
+    multiple: true

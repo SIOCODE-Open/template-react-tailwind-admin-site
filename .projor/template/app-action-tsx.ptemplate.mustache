@@ -1,0 +1,80 @@
+{
+    "map": {},
+    "filename": "src/components/AppAction.component.tsx",
+    "formatUsing": "typescript"
+}
+---
+import { Icon } from '@iconify/react';
+import classNames from "classnames";
+
+export function AppAction(
+    opts: {
+        to: string,
+        name: string,
+        icon?: string,
+        small?: boolean,
+        navigate: (path: string) => void
+    }
+) {
+    let aClassName = classNames(
+        "p-2",
+        {
+            "text-sm": opts.small,
+        },
+        {{#if $.actions.background}}
+        {
+            "bg-{{$.actions.background}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.border}}
+        {
+            "border": true,
+            "border-{{$.actions.border}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.text}}
+        {
+            "text-{{$.actions.text}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.shadow}}
+        {
+            "shadow-{{$.actions.shadow}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.hover}}
+        {{#if $.actions.hover.background}}
+        {
+            "hover:bg-{{$.actions.hover.background}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.hover.border}}
+        {
+            "hover:border": true,
+            "hover:border-{{$.actions.hover.border}}": true,
+        },
+        {{/if}}
+        {{#if $.actions.hover.text}}
+        {
+            "hover:text-{{$.actions.hover.text}}": true,
+        }
+        {{/if}}
+        {{/if}}
+        {
+            "rounded-lg": true,
+            "text-center": !opts.small,
+            "flex": true,
+            "flex-row": true,
+            "justify-start": true,
+            "items-center": true,
+            "gap-2": true,
+        }
+    );
+    return <a href="#" className={aClassName}
+        onClick={ (ev: any) => { ev.preventDefault(); opts.navigate(opts.to) } }>
+        {
+            opts.icon && <Icon icon={opts.icon} />
+        }
+        <span>{opts.name}</span>
+    </a>;
+}

@@ -1,0 +1,48 @@
+function {{pascalCase page.name}}PreActions(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-row justify-start items-center wrap gap-4">
+        {{#each page.editPage.preActions}}
+        <AppAction to="{{kebabCase goesTo.name}}" name="{{capitalCase name}}" {{#if icon}}icon={`{{{icon}}}`}{{/if}} navigate={opts.navigate} />
+        {{/each}}
+    </div>
+}
+function {{pascalCase page.name}}PostActions(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-row justify-start items-center wrap gap-4">
+        {{#each page.editPage.postActions}}
+        <AppAction to="{{kebabCase goesTo.name}}" name="{{capitalCase name}}" {{#if icon}}icon={`{{{icon}}}`}{{/if}} navigate={opts.navigate} />
+        {{/each}}
+    </div>
+}
+function {{pascalCase page.name}}Form(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{#each page.editPage.fields}}
+        <div className="flex flex-col justify-start items-start gap-2">
+            <p className="text-sm text-gray-500">{{capitalCase name}}</p>
+            <input type="text" placeholder={`{{{example}}}`} className="w-full p-2 border border-gray-500 focus:outline-gray-700 rounded-lg" />
+        </div>
+        {{/each}}
+    </div>;
+}
+
+function {{pascalCase page.name}}Content(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <div className="flex flex-col justify-start items-start gap-4">
+        <{{pascalCase page.name}}PreActions navigate={opts.navigate} />
+        <{{pascalCase page.name}}Form navigate={opts.navigate} />
+        <{{pascalCase page.name}}PostActions navigate={opts.navigate} />
+    </div>;
+}

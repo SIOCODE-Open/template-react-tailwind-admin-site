@@ -1,0 +1,8 @@
+id: BasicType
+name: Basic Type
+description: A basic type, like string
+fields:
+  - name: ts
+    description: The type of the basic type
+    type: string
+    required: true

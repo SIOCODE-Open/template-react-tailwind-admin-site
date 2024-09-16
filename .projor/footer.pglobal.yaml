@@ -1,0 +1,6 @@
+footer:
+  enabled: true
+  background: blue-600
+  text: gray-200
+  version: true
+  motd: Generated using <a href="https://projor.io" className="underline">Projor</a>.

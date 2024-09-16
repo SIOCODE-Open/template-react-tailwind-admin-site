@@ -1,0 +1,104 @@
+{
+    "map": {
+        "pages": "pages"
+    },
+    "filename": "PAGES.md"
+}
+---
+# Pages
+
+This file contains information about all of the generated pages.
+
+{{#each pages}}
+## {{capitalCase name}}
+
+{{{description}}}
+
+Type: {{capitalCase type.name}} (_{{{type.description}}}_)
+
+Page title: `{{{title}}}`
+
+Page message: `{{{message}}}`
+
+{{#if dashboard}}
+{{#if dashboard.preActions}}
+*Pre-actions*
+
+{{#each dashboard.preActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if dashboard.postActions}}
+*Post-actions*
+
+{{#each dashboard.postActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{/if}}
+
+{{#if editPage}}
+{{#if editPage.fields}}
+*Fields*
+
+{{#each editPage.fields}}
+* **{{capitalCase name}}** ({{capitalCase type.name}}) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if editPage.preActions}}
+*Pre-actions*
+
+{{#each editPage.preActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if editPage.postActions}}
+*Post-actions*
+
+{{#each editPage.postActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{/if}}
+
+{{#if listPage}}
+{{#if listPage.columns}}
+*Columns*
+
+{{#each listPage.columns}}
+* **{{capitalCase name}}** ({{capitalCase type.name}}) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if listPage.preActions}}
+*Pre-actions*
+
+{{#each listPage.preActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if listPage.postActions}}
+*Post-actions*
+
+{{#each listPage.postActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{#if listPage.itemActions}}
+*Item actions*
+
+{{#each listPage.itemActions}}
+* **{{capitalCase name}}** (goes to _{{capitalCase goesTo.name}}_) - {{{description}}}
+{{/each}}
+
+{{/if}}
+{{/if}}
+
+{{/each}}

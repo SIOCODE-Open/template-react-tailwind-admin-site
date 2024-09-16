@@ -1,0 +1,14 @@
+id: DashboardPage
+name: Dashboard Page
+description: A dashboard page
+fields:
+  - name: preActions
+    description: Actions to display before the form
+    type: attachment
+    references: Action
+    multiple: true
+  - name: postActions
+    description: Actions to display after the form
+    type: attachment
+    references: Action
+    multiple: true

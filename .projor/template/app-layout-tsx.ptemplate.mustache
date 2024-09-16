@@ -1,0 +1,98 @@
+{
+    "map": {
+        "pages": "pages"
+    },
+    "filename": "src/layout/AppLayout.component.tsx",
+    "formatUsing": "typescript"
+}
+---
+import { ReactNode } from "react";
+import { Icon } from '@iconify/react';
+
+{{#if $.header.enabled}}
+function AppHeader(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <header className="w-full flex flex-row justify-between items-center gap-2 p-2 bg-{{$.header.background}} text-{{$.header.text}} shadow-lg">
+        <div className="text-2xl font-bold">
+            {{capitalCase $.name}}
+        </div>
+        <div className="flex flex-row justify-start items-center">
+            {{#if $.header.logout}}
+            <a href="#" onClick={(ev) => { ev.preventDefault(); opts.navigate("login"); }} className="text-sm font-bold">Logout</a>
+            {{/if}}
+        </div>
+    </header>;
+}
+{{/if}}
+
+{{#if $.footer.enabled}}
+function AppFooter(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <footer className="w-full flex flex-row justify-center items-center gap-2 p-2 bg-{{$.footer.background}} text-{{$.footer.text}}">
+        <div className="text-sm">
+            {{capitalCase $.name}}{{#if $.footer.version}} - Version: {{$.version}}{{/if}}{{#if $.footer.motd}} | {{{$.footer.motd}}}{{/if}}
+        </div>
+    </footer>;
+}
+{{/if}}
+
+{{#if $.sidebar.enabled}}
+function AppSidebar(
+    opts: {
+        navigate: (path: string) => void
+    }
+) {
+    return <aside className="w-{{$.sidebar.width}} bg-{{$.sidebar.background}} text-{{$.sidebar.text}} grow shadow-lg">
+        <div className="flex flex-col justify-start items-start gap-2 p-4">
+            <h1 className="text-lg font-bold mt-8">Navigation</h1>
+        {{#each pages}}
+        {{#unless unlisted}}
+            <a href="#" onClick={(ev) => { ev.preventDefault(); opts.navigate("{{kebabCase name}}"); }}
+                className="text-sm font-bold flex flex-row justify-start items-center">
+                <Icon icon={`{{{icon}}}`} />
+                <span>{{capitalCase name}}</span>
+            </a>
+        {{/unless}}
+        {{/each}}
+        </div>
+    </aside>;
+}
+{{/if}}
+
+export function AppLayout(
+    opts: {
+        navigate: (path: string) => void,
+        content: (contentOpts: {
+            navigate: (path: string) => void
+        }) => ReactNode
+    }
+) {
+    return <div className="w-screen min-h-screen flex flex-col justify-stretch items-center">
+        {{#if $.header.enabled}}
+        <AppHeader navigate={opts.navigate} />
+        {{/if}}
+        {{#if $.sidebar.enabled}}
+        <div className="w-full grow flex flex-row justify-stretch items-stretch">
+            <AppSidebar navigate={opts.navigate} />
+        {{/if}}
+            <main className="w-full flex flex-col justify-start items-start grow">
+                {
+                    opts.content({
+                        navigate: opts.navigate
+                    })
+                }
+            </main>
+        {{#if $.sidebar.enabled}}
+        </div>
+        {{/if}}
+        {{#if $.footer.enabled}}
+        <AppFooter navigate={opts.navigate} />
+        {{/if}}
+    </div>;
+}

@@ -1,0 +1,36 @@
+id: Page
+name: Page
+description: A page in the admin site
+fields:
+  - name: type
+    description: The type of the page
+    type: reference
+    references: PageType
+    required: true
+  - name: title
+    description: The title of the page
+    type: string
+    required: true
+  - name: message
+    description: The message to display on the page
+    type: string
+    required: true
+  - name: icon
+    description: The icon to display on the page
+    type: string
+    required: true
+  - name: unlisted
+    description: Whether the page should be unlisted
+    type: boolean
+  - name: listPage
+    description: The list page to display
+    type: attachment
+    references: ListPage
+  - name: editPage
+    description: The edit page to display
+    type: attachment
+    references: EditPage
+  - name: dashboard
+    description: The dashboard page to display
+    type: attachment
+    references: DashboardPage

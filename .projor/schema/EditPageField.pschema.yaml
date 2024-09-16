@@ -1,0 +1,9 @@
+id: EditPageField
+name: Edit Page Field
+description: A field in an edit page
+fields:
+  - name: type
+    description: The type of the field
+    type: reference
+    references: BasicType
+    required: true

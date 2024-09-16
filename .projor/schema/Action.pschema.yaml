@@ -1,0 +1,13 @@
+id: Action
+name: Action
+description: An action on a page, or for an item
+fields:
+  - name: goesTo
+    description: The page that this action goes to
+    type: reference
+    references: Page
+    required: true
+  - name: icon
+    description: The icon to display for the action
+    type: string
+    required: true

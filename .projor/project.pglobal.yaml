@@ -1,0 +1,5 @@
+scope: my-org
+name: admin-site
+description: _You can edit this description in [`.projor/project.pglobal.yaml`](.projor/project.pglobal.yaml)_
+version: 0.0.1
+initialPage: dashboard

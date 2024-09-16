@@ -1,0 +1,6 @@
+header:
+  enabled: true
+  background: blue-600
+  text: white
+  logout: true
+  navigation: false

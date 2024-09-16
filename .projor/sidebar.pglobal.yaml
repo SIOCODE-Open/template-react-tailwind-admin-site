@@ -1,0 +1,5 @@
+sidebar:
+  enabled: true
+  background: blue-800
+  text: white
+  width: 64

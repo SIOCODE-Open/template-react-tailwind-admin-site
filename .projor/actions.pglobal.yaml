@@ -1,0 +1,7 @@
+actions:
+  background: blue-500
+  text: white
+  border: blue-400
+  shadow: lg
+  hover:
+    background: blue-600

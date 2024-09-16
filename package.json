@@ -1,0 +1,28 @@
+{
+    "name": "@my-org/admin-site",
+    "version": "0.0.1",
+    "description": "_You can edit this description in [&#x60;.projor/project.pglobal.yaml&#x60;](.projor/project.pglobal.yaml)_",
+    "private": true,
+    "dependencies": {
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
+        "@iconify/react": "5.0.2",
+        "classnames": "2.5.1"
+    },
+    "devDependencies": {
+        "esbuild": "0.23.1",
+        "typescript": "5.6.2",
+        "@types/react": "18.3.6",
+        "@types/react-dom": "18.3.0",
+        "tailwindcss": "3.4.11",
+        "concurrently": "9.0.1"
+    },
+    "scripts": {
+        "build:css": "tailwindcss build src/tailwind.css -o public/index.css --minify",
+        "build:js": "esbuild src/index.tsx --bundle --outfile=public/index.js --minify --jsx=automatic",
+        "build": "npm run build:css && npm run build:js",
+        "serve:css": "tailwindcss build src/tailwind.css -o public/index.css --watch",
+        "serve:js": "esbuild src/index.tsx --bundle --outfile=public/index.js --sourcemap=inline --serve=0.0.0.0:3000 --servedir=public --jsx=automatic",
+        "serve": "concurrently -n \"css,js\" \"npm run serve:css\" \"npm run serve:js\""
+    }
+}
