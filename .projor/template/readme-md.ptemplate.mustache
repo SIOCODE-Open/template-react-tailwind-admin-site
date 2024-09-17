@@ -24,6 +24,22 @@ npm run serve
 
 Then, upen `http://localhost:3000` in your browser.
 
+You can also use [Docker](https://www.docker.com/) with this project.
+
+* The final container image uses `nginx` to serve the static frontend. The [`Dockerfile`](Dockerfile) also uses the `node` image to build it first. This is the command to build the container image:
+
+```
+docker build -t {{#if $.scope}}{{kebabCase $.scope}}/{{/if}}{{kebabCase $.name}}:latest .
+```
+
+* You can also use `docker compose` to run the project. Run the following command:
+
+```
+docker compose up --build
+```
+
+Then, open `http://localhost:3000` in your browser.
+
 ## License
 
 This template is licensed under the [MIT License](LICENSE.md).
