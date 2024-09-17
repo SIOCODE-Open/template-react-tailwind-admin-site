@@ -15,7 +15,7 @@ dashboard Dashboard[ic:baseline-dashboard] {
     message This is the admin dashboard. It is left empty for this example.
 }
 // The list of products page
-list-page Products[ic:baseline-shopping_cart] {
+list_page Products[ic:baseline-shopping_cart] {
     title Products
     message This is the list of products. You can edit or delete them.
     column id: number example 465191de-2108-4dc0-ac81-d3d53f2176e1
@@ -27,7 +27,7 @@ list-page Products[ic:baseline-shopping_cart] {
     item action Delete[ic:baseline-delete] goes to Products
 }
 // The edit product page
-edit-page EditProduct[ic:baseline-edit] {
+edit_page EditProduct[ic:baseline-edit] {
     title Edit Vacuum Cleaner
     message You are editing product 465191de-2108-4dc0-ac81-d3d53f2176e1 called Vacuum Cleaner.
     field name: string example Vacuum Cleaner
