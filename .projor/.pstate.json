@@ -1,6 +1,18 @@
 {
   "generatedSource": [
     {
+      "filename": "docker-compose.yaml",
+      "content": "version: '3.8'\nservices:\n  app:\n    build:\n      dockerfile: Dockerfile\n      context: .\n    ports:\n      - 3000:80",
+      "contentHash": "aa2f3b205e513490ba4cf3722ee75e45c95d870e09676764e80e83869862e90a",
+      "noWriteIfExists": false
+    },
+    {
+      "filename": "Dockerfile",
+      "content": "FROM node:22 as builder\nWORKDIR /app\nADD package.json /app/package.json\nADD tsconfig.json /app/tsconfig.json\nADD tailwind.config.js /app/tailwind.config.js\nRUN npm install\nADD src /app/src\nADD public /app/public\nRUN npm run build\n\nFROM nginx:alpine as runner\nCOPY --from=builder /app/public /usr/share/nginx/html",
+      "contentHash": "c077a6f041f0d2ed6d1e328d961aa48128e4341fb6f82d97e9a315531c6e9af1",
+      "noWriteIfExists": false
+    },
+    {
       "filename": "package.json",
       "content": "{\n    \"name\": \"@my-org/admin-site\",\n    \"version\": \"0.0.1\",\n    \"description\": \"_You can edit this description in [&#x60;.projor/project.pglobal.yaml&#x60;](.projor/project.pglobal.yaml)_\",\n    \"private\": true,\n    \"dependencies\": {\n        \"react\": \"18.3.1\",\n        \"react-dom\": \"18.3.1\",\n        \"@iconify/react\": \"5.0.2\",\n        \"classnames\": \"2.5.1\"\n    },\n    \"devDependencies\": {\n        \"esbuild\": \"0.23.1\",\n        \"typescript\": \"5.6.2\",\n        \"@types/react\": \"18.3.6\",\n        \"@types/react-dom\": \"18.3.0\",\n        \"tailwindcss\": \"3.4.11\",\n        \"concurrently\": \"9.0.1\"\n    },\n    \"scripts\": {\n        \"build:css\": \"tailwindcss build src/tailwind.css -o public/index.css --minify\",\n        \"build:js\": \"esbuild src/index.tsx --bundle --outfile=public/index.js --minify --jsx=automatic\",\n        \"build\": \"npm run build:css && npm run build:js\",\n        \"serve:css\": \"tailwindcss build src/tailwind.css -o public/index.css --watch\",\n        \"serve:js\": \"esbuild src/index.tsx --bundle --outfile=public/index.js --sourcemap=inline --serve=0.0.0.0:3000 --servedir=public --jsx=automatic\",\n        \"serve\": \"concurrently -n \\\"css,js\\\" \\\"npm run serve:css\\\" \\\"npm run serve:js\\\"\"\n    }\n}\n",
       "contentHash": "d07684012139452f78840c169ccbf097984f1abab8e5b329934659f0062f87e3",
