@@ -38,3 +38,22 @@ edit-page EditProduct[ic:baseline-edit] {
     item action Delete[ic:baseline-delete] goes to Products
 }
 ```
+
+* Now, you can run `projor generate`, and it will generate the source code.
+* Run `npm install`, then `npm run serve` and open up your browser at `http://localhost:3000` to see the generated site.
+
+## Further customization
+
+There are multiple files in [`.projor/`](./) to customize the generated site:
+
+* The [`project.pglobal.yaml`](project.pglobal.yaml) file contains settings like _npm package scope_, and _version_.
+* The [`header.pglobal.yaml`](header.pglobal.yaml) file contains settings for the _site header_. Customize options like _background color_, or _disable the header completely_ in this file.
+* The [`sidebar.pglobal.yaml`](sidebar.pglobal.yaml) file contains settings for the _site sidebar_. Customize options like _background color_, or _disable the sidebar completely_ in this file.
+* The [`footer.pglobal.yaml`](footer.pglobal.yaml) file contains settings for the _site footer_. Customize options like _background color_, or _disable the footer completely_ in this file.
+* The [`actions.pglobal.yaml`](actions.pglobal.yaml) file contains settings for any generated _action buttons_.
+
+## License
+
+This template is licensed under the [MIT License](LICENSE.md).
+
+[ProJor](https://projor.io) is licensed under either the [ProJor Free License](https://license.projor.io) or the [ProJor Commercial License](https://license.projor.io).
