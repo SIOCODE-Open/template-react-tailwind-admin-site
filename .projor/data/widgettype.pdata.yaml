@@ -1,0 +1,11 @@
+id: widgettype
+name: Widget Types
+description: The available types of widgets
+schema: WidgetType
+objects:
+  - name: Stat
+    description: Displays a statistic on the dashboard
+  - name: List
+    description: Displays a list of items on the dashboard
+  - name: Message
+    description: Displays a message on the dashboard

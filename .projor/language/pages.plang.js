@@ -28,6 +28,30 @@ async function parseAllPagesFiles(files) {
                     keyword: "post action",
                     postkeyword: "goes to",
                 },
+                {
+                    type: "block",
+                    name: "stat_widget",
+                    keyword: "stat widget",
+                    content: [],
+                },
+                {
+                    type: "block",
+                    name: "message_widget",
+                    keyword: "msg widget",
+                    content: [],
+                },
+                {
+                    type: "block",
+                    name: "list_widget",
+                    keyword: "list widget",
+                    content: [
+                        {
+                            type: "property",
+                            name: "item",
+                            keyword: "item",
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -647,9 +671,9 @@ async function parseAllPagesFiles(files) {
     
         return results;
     }
-    
+
     // Assume the parser function is already here
-    
+
     function processParsedData(parsedData) {
         const objects = parsedData.map((parsedObject) => {
             const {
@@ -660,22 +684,22 @@ async function parseAllPagesFiles(files) {
                 comment: description,
                 generic: pageGeneric
             } = parsedObject;
-    
+
             const baseObject = {
                 name: name,
                 description: description || 'No description',
                 icon: icon || '',
                 type: type === 'dashboard_block' ? `pagetype#Dashboard`
                     : type === 'list_page_block' ? `pagetype#ListPage`
-                    : type === 'edit_page_block' ? `pagetype#EditPage`
-                    : 'pagetype#Unknown',
+                        : type === 'edit_page_block' ? `pagetype#EditPage`
+                            : 'pagetype#Unknown',
                 unlisted: pageGeneric.includes('unlisted'),
             };
-    
+
             // Handle content for each type of page block
             switch (type) {
                 case 'dashboard_block':
-                    baseObject.dashboard = { name: '_', preActions: [], postActions: [] };
+                    baseObject.dashboard = { name: '_', preActions: [], postActions: [], widgets: [] };
                     content.forEach((item) => {
                         if (item.type === 'title') baseObject.title = item.value;
                         if (item.type === 'message') baseObject.message = item.value;
@@ -691,12 +715,44 @@ async function parseAllPagesFiles(files) {
                             icon: item.annotation,
                             goesTo: `pages#${item.post}`,
                         });
+                        if (item.type === 'stat_widget') baseObject.dashboard.widgets.push({
+                            name: item.name,
+                            description: item.comment || 'No description',
+                            type: `widgettype#Stat`,
+                            statWidget: {
+                                name: item.name,
+                                value: item.annotation,
+                            }
+                        });
+                        if (item.type === 'list_widget') baseObject.dashboard.widgets.push({
+                            name: item.name,
+                            description: item.comment || 'No description',
+                            type: `widgettype#List`,
+                            listWidget: {
+                                name: item.name,
+                                items: item.content.filter((i) => i.type === 'item').map((i) => {
+                                    return {
+                                        name: i.value,
+                                        description: i.comment || 'No description',
+                                    };
+                                }),
+                            }
+                        });
+                        if (item.type === 'message_widget') baseObject.dashboard.widgets.push({
+                            name: item.name,
+                            description: item.comment || 'No description',
+                            type: `widgettype#Message`,
+                            messageWidget: {
+                                name: item.name,
+                                description: item.annotation
+                            }
+                        });
                     });
                     break;
-    
+
                 case 'list_page_block':
                     baseObject.listPage = { name: '_', columns: [], preActions: [], postActions: [], itemActions: [] };
-    
+
                     content.forEach((item) => {
                         if (item.type === 'title') baseObject.title = item.value;
                         if (item.type === 'message') baseObject.message = item.value;
@@ -734,10 +790,10 @@ async function parseAllPagesFiles(files) {
                         }
                     });
                     break;
-    
+
                 case 'edit_page_block':
                     baseObject.editPage = { name: '_', fields: [], postActions: [] };
-    
+
                     content.forEach((item) => {
                         if (item.type === 'title') baseObject.title = item.value;
                         if (item.type === 'message') baseObject.message = item.value;
@@ -760,10 +816,10 @@ async function parseAllPagesFiles(files) {
                     });
                     break;
             }
-    
+
             return baseObject;
         });
-    
+
         return { id: 'pages', name: 'Pages', schema: 'Page', objects };
     }
 

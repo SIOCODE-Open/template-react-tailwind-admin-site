@@ -1,5 +1,8 @@
 import { AppLayout } from "../layout/AppLayout.component";
 import { AppAction } from "../components/AppAction.component";
+import { AppDashboardList } from "../components/AppDashboardList.component";
+import { AppDashboardStat } from "../components/AppDashboardStat.component";
+import { AppDashboardMessage } from "../components/AppDashboardMessage.component";
 
 function CreateProductPreActions(opts: { navigate: (path: string) => void }) {
     return (

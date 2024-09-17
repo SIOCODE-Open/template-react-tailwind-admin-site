@@ -1,7 +1,14 @@
 // The admin dashboard page
 dashboard Dashboard[ic:baseline-dashboard] {
     title Admin dashboard
-    message This is the admin dashboard. It is left empty for this example.
+    message This is the admin dashboard.
+    msg widget Dashboard note[This dashboard should be extended with the widgets that are needed.] { }
+    stat widget 24H Revenue[$1,000,000] { }
+    list widget TODOS {
+        item Do the laundry
+        item Buy groceries
+        item Call mom
+    }
     post action Open Products[ic:baseline-shopping-cart] goes to Products
 }
 // The list of products page

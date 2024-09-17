@@ -1,0 +1,21 @@
+id: DashboardWidget
+name: Dashboard Widget
+description: A widget on the dashboard
+fields:
+  - name: statWidget
+    type: attachment
+    references: StatWidget
+    description: Embedded stat widget options
+  - name: listWidget
+    type: attachment
+    references: ListWidget
+    description: Embedded list widget options
+  - name: messageWidget
+    type: attachment
+    references: MessageWidget
+    description: Embedded message widget options
+  - name: type
+    type: reference
+    references: WidgetType
+    description: Type of widget
+    required: true

@@ -1,0 +1,9 @@
+id: ListWidget
+name: List Widget
+description: Properties of the list dashboard widget
+fields:
+  - name: items
+    type: attachment
+    references: ListWidgetItem
+    multiple: true
+    description: List items to display

@@ -12,3 +12,8 @@ fields:
     type: attachment
     references: Action
     multiple: true
+  - name: widgets
+    description: Widgets to display on the dashboard
+    type: attachment
+    references: DashboardWidget
+    multiple: true

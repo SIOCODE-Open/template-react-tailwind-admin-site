@@ -1,0 +1,7 @@
+id: StatWidget
+name: Stat Widget
+description: Properties of the stat dashboard widget
+fields:
+  - name: value
+    type: string
+    description: The value to display

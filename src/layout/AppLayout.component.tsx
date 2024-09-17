@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 function AppHeader(opts: { navigate: (path: string) => void }) {
     return (
-        <header className="w-full flex flex-row justify-between items-center gap-2 p-2 bg-blue-600 text-white shadow-lg">
+        <header className="w-full flex flex-row justify-between items-center gap-2 p-2 bg-blue-700 text-white shadow-lg">
             <div className="text-2xl font-bold">Admin Site</div>
             <div className="flex flex-row justify-start items-center">
                 <a
@@ -23,7 +23,7 @@ function AppHeader(opts: { navigate: (path: string) => void }) {
 
 function AppFooter(opts: { navigate: (path: string) => void }) {
     return (
-        <footer className="w-full flex flex-row justify-center items-center gap-2 p-2 bg-blue-600 text-gray-200">
+        <footer className="w-full flex flex-row justify-center items-center gap-2 p-2 bg-blue-900 text-white">
             <div className="text-sm">
                 Admin Site - Version: 0.0.1 | Generated using{" "}
                 <a href="https://projor.io" className="underline">

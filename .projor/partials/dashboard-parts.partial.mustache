@@ -26,11 +26,34 @@ function {{pascalCase page.name}}Widgets(
         navigate: (path: string) => void
     }
 ) {
-    return <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-2 border border-gray-500 rounded-lg text-center text-gray-500">
+    return <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-8">
+        {{#each page.dashboard.widgets}}
+        <div className="w-full p-8 shadow-lg rounded-lg text-center text-gray-500">
+        {{#if statWidget}}
+        { /* {{{description}}} */ }
+            <AppDashboardStat name={`{{capitalCase name}}`} value={`{{{statWidget.value}}}`} icon={`{{{statWidget.icon}}}`} />
+        {{/if}}
+        {{#if listWidget}}
+        { /* {{{description}}} */ }
+        <AppDashboardList name={`{{capitalCase name}}`} value={[
+            {{#each listWidget.items}}
+            `{{{name}}}`, // {{{description}}}
+            {{/each}}
+        ]} />
+        {{/if}}
+        {{#if messageWidget}}
+            <AppDashboardMessage value={`{{{messageWidget.description}}}`} name={`{{{capitalCase name}}}`} />
+        {{/if}}
+        </div>
+
+        {{/each}}
+        {{#unless page.dashboard.widgets}}
+        <div className="p-2 shadow-lg rounded-lg text-center text-gray-500">
             <h1 className="text-xl">Example widget</h1>
             <p className="text-sm italic text-gray-500">This is an example widget, dashboard needs some more work.</p>
+            
         </div>
+        {{/unless}}
     </div>
 }
 

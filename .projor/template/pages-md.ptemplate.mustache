@@ -21,6 +21,20 @@ Page title: `{{{title}}}`
 Page message: `{{{message}}}`
 
 {{#if dashboard}}
+{{#if dashboard.widgets}}
+*Widgets*
+
+{{#each dashboard.widgets}}
+* **{{capitalCase name}}** ({{capitalCase type.name}}) - {{{description}}}{{#if statWidget}}
+    * **Displays**: `{{{statWidget.value}}}`
+{{/if}}{{#if listWidget}}
+    {{#each listWidget.items}}
+    * `{{{name}}}` - {{{description}}}
+    {{/each}}
+{{/if}}
+{{/each}}
+
+{{/if}}
 {{#if dashboard.preActions}}
 *Pre-actions*
 

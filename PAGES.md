@@ -10,7 +10,16 @@ Type: Dashboard (_A dashboard page_)
 
 Page title: `Admin dashboard`
 
-Page message: `This is the admin dashboard. It is left empty for this example.`
+Page message: `This is the admin dashboard.`
+
+*Widgets*
+
+* **Dashboard Note** (Message) - No description* **24 H Revenue** (Stat) - No description
+    * **Displays**: `$1,000,000`
+* **Todos** (List) - No description
+    * `Do the laundry` - No description
+    * `Buy groceries` - No description
+    * `Call mom` - No description
 
 *Post-actions*
 

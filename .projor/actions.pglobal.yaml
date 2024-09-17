@@ -4,4 +4,4 @@ actions:
   border: blue-400
   shadow: lg
   hover:
-    background: blue-600
+    background: blue-700

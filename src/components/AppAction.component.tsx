@@ -27,7 +27,7 @@ export function AppAction(opts: {
             "shadow-lg": true,
         },
         {
-            "hover:bg-blue-600": true,
+            "hover:bg-blue-700": true,
         },
         {
             "rounded-lg": true,

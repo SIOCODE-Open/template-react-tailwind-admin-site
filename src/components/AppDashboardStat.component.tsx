@@ -1,0 +1,18 @@
+import { Icon } from "@iconify/react";
+import classNames from "classnames";
+
+export function AppDashboardStat(opts: {
+    name: string;
+    icon?: string;
+    value: string;
+}) {
+    return (
+        <div className="w-full h-full flex flex-col justify-center items-center gap-4 grow">
+            <p className="text-2xl font-bold">{opts.value}</p>
+            <p className="text-sm text-gray-500 flex flex-row justify-start items-center gap-2">
+                {opts.icon && <Icon icon={opts.icon} />}
+                <span>{opts.name}</span>
+            </p>
+        </div>
+    );
+}
