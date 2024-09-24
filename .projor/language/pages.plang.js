@@ -392,10 +392,10 @@ async function parseAllPagesFiles(files) {
                         );
     
                         item.type = topLevelElement.name;
-                        item.name = name;
-                        item.annotation = annotation;
-                        item.generic = generic;
-                        item.arguments = arguments;
+                        item.name = name.trim();
+                        item.annotation = annotation.trim();
+                        item.generic = generic.trim();
+                        item.arguments = arguments.trim();
                         item.content = parsedBlockContent;
     
                         item.comment = commentBuffer.join("\n");
@@ -445,7 +445,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextSquareBracketIndex !== -1 &&
-                            nextSquareBracketIndex < currentLineEndIndex
+                            (nextSquareBracketIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const annotationContent = extractWithinBrackets(
                                 inputText,
@@ -464,7 +465,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextLessThanIndex !== -1 &&
-                            nextLessThanIndex < currentLineEndIndex
+                            (nextLessThanIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const genericContent = extractWithinBrackets(
                                 inputText,
@@ -483,7 +485,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextOpenParenthesisIndex !== -1 &&
-                            nextOpenParenthesisIndex < currentLineEndIndex
+                            (nextOpenParenthesisIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const argumentsContent = extractWithinBrackets(
                                 inputText,
@@ -509,10 +512,10 @@ async function parseAllPagesFiles(files) {
                         }
     
                         item.type = topLevelElement.name;
-                        item.name = name;
-                        item.annotation = annotation;
-                        item.generic = generic;
-                        item.arguments = arguments;
+                        item.name = name.trim();
+                        item.annotation = annotation.trim();
+                        item.generic = generic.trim();
+                        item.arguments = arguments.trim();
     
                         item.comment = commentBuffer.join("\n");
                         commentBuffer = [];
@@ -537,11 +540,13 @@ async function parseAllPagesFiles(files) {
                         const name = nameMatch ? nameMatch[1] : null;
     
                         // Now we should find the type declaration
-                        const typeMatch = currentLine.match(/\s*:\s*([\w]+)\s+/);
+                        const typeMatch = currentLine.match(
+                            /\s*:\s*([\w]+)(?:\s+)?/
+                        );
                         const type = typeMatch ? typeMatch[1] : null;
     
-                        // Now let's see if the typed-declaration has annotations in the current line
-                        // We need to check between currentIndex and currentLineEndIndex, whether there's a '[' character
+                        // Now let's see if the block has annotations
+                        // We need to check between currentIndex and blockStartIndex, whether there's a '[' character
                         // If there is, we should extract the annotation
                         let annotation = "";
                         const nextSquareBracketIndex = inputText.indexOf(
@@ -550,7 +555,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextSquareBracketIndex !== -1 &&
-                            nextSquareBracketIndex < currentLineEndIndex
+                            (nextSquareBracketIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const annotationContent = extractWithinBrackets(
                                 inputText,
@@ -569,7 +575,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextLessThanIndex !== -1 &&
-                            nextLessThanIndex < currentLineEndIndex
+                            (nextLessThanIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const genericContent = extractWithinBrackets(
                                 inputText,
@@ -588,7 +595,8 @@ async function parseAllPagesFiles(files) {
                         );
                         if (
                             nextOpenParenthesisIndex !== -1 &&
-                            nextOpenParenthesisIndex < currentLineEndIndex
+                            (nextOpenParenthesisIndex < currentLineEndIndex ||
+                                currentLineEndIndex === -1)
                         ) {
                             const argumentsContent = extractWithinBrackets(
                                 inputText,
@@ -614,11 +622,11 @@ async function parseAllPagesFiles(files) {
                         }
     
                         item.type = topLevelElement.name;
-                        item.name = name;
-                        item.declaredtype = type;
-                        item.annotation = annotation;
-                        item.generic = generic;
-                        item.arguments = arguments;
+                        item.name = name.trim();
+                        item.declaredtype = type.trim();
+                        item.annotation = annotation.trim();
+                        item.generic = generic.trim();
+                        item.arguments = arguments.trim();
     
                         item.comment = commentBuffer.join("\n");
                         commentBuffer = [];
@@ -670,7 +678,7 @@ async function parseAllPagesFiles(files) {
         }
     
         return results;
-    }
+    }    
 
     // Assume the parser function is already here
 

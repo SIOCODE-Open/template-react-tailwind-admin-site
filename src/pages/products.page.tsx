@@ -22,6 +22,7 @@ function ProductsPostActions(opts: { navigate: (path: string) => void }) {
             <AppAction
                 to="dashboard"
                 name="Open Dashboard"
+                icon={`ic:baseline-dashboard`}
                 navigate={opts.navigate}
             />
         </div>

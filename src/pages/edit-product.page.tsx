@@ -24,7 +24,12 @@ function EditProductPostActions(opts: { navigate: (path: string) => void }) {
                 icon={`ic:baseline-save`}
                 navigate={opts.navigate}
             />
-            <AppAction to="products" name="Delete" navigate={opts.navigate} />
+            <AppAction
+                to="products"
+                name="Delete"
+                icon={`ic:baseline-delete`}
+                navigate={opts.navigate}
+            />
         </div>
     );
 }

@@ -18,7 +18,12 @@ function CreateProductPostActions(opts: { navigate: (path: string) => void }) {
                 icon={`ic:baseline-cancel`}
                 navigate={opts.navigate}
             />
-            <AppAction to="products" name="Save" navigate={opts.navigate} />
+            <AppAction
+                to="products"
+                name="Save"
+                icon={`ic:baseline-save`}
+                navigate={opts.navigate}
+            />
         </div>
     );
 }
