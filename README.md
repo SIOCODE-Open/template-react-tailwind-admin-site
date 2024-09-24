@@ -6,11 +6,7 @@ This is a template for an _admin frontend site_, using [React](https://react.dev
 
 _You can edit this description in [`.projor/project.pglobal.yaml`](.projor/project.pglobal.yaml)_
 
-![](screenshots/admin-dashboard.png)
-
-![](screenshots/products.png)
-
-![](screenshots/edit-product.png)
+TODO: Screenshot here
 
 ## Running
 
