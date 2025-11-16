@@ -1,6 +1,6 @@
 footer:
   enabled: true
-  background: blue-900
-  text: white
+  background: slate-950
+  text: slate-400
   version: true
-  motd: Generated using <a href="https://projor.io" className="underline">Projor</a>.
+  motd: Generated using <a href="https://projor.io" className="underline text-indigo-400 hover:text-indigo-300">Projor</a>.

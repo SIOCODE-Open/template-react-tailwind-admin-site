@@ -1,6 +1,6 @@
 header:
   enabled: true
-  background: blue-700
+  background: slate-800
   text: white
   logout: true
   navigation: false

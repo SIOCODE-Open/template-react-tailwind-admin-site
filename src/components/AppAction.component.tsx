@@ -9,28 +9,37 @@ export function AppAction(opts: {
     navigate: (path: string) => void;
 }) {
     let aClassName = classNames(
-        "p-2",
+        "px-4 py-2.5",
         {
             "text-sm": opts.small,
+            "font-medium": true,
         },
         {
-            "bg-blue-500": true,
+            "bg-white": true,
         },
         {
             border: true,
-            "border-blue-400": true,
+            "border-slate-300": true,
         },
         {
-            "text-white": true,
+            "text-slate-700": true,
         },
         {
-            "shadow-lg": true,
+            "shadow-sm": true,
         },
         {
-            "hover:bg-blue-700": true,
+            "rounded-md": true,
         },
         {
-            "rounded-lg": true,
+            "hover:bg-slate-50": true,
+        },
+        {
+            "hover:border-slate-400": true,
+        },
+        {
+            "hover:shadow-md": true,
+        },
+        {
             "text-center": !opts.small,
             flex: true,
             "flex-row": true,

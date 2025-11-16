@@ -7,10 +7,15 @@ export function AppDashboardStat(opts: {
     value: string;
 }) {
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center gap-4 grow">
-            <p className="text-2xl font-bold">{opts.value}</p>
-            <p className="text-sm text-gray-500 flex flex-row justify-start items-center gap-2">
-                {opts.icon && <Icon icon={opts.icon} />}
+        <div className="w-full h-full flex flex-col justify-center items-center gap-3 p-6 bg-white rounded-xl border-2 border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200">
+            <p className="text-3xl font-bold text-slate-800">{opts.value}</p>
+            <p className="text-sm text-slate-600 flex flex-row justify-start items-center gap-2 font-medium">
+                {opts.icon && (
+                    <Icon
+                        icon={opts.icon}
+                        className="text-lg text-indigo-600"
+                    />
+                )}
                 <span>{opts.name}</span>
             </p>
         </div>

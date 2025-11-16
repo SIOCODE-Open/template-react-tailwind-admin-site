@@ -74,15 +74,18 @@ export function CreateProductPage(opts: { navigate: (path: string) => void }) {
     return (
         <AppLayout
             content={() => (
-                <div className="w-full flex flex-col gap-2 p-4 bg-white">
-                    <h1 className="text-4xl text-gray-600 font-bold">
-                        Create Product
-                    </h1>
-                    <h2 className="text-xl text-gray-400 font-serif italic">
-                        You are creating a new product.
-                    </h2>
-                    <hr className="border border-b border-gray-200" />
-                    <CreateProductContent navigate={opts.navigate} />
+                <div className="w-full h-full flex flex-col gap-6 p-8 bg-slate-50">
+                    <div className="flex flex-col gap-2">
+                        <h1 className="text-4xl text-slate-800 font-bold tracking-tight">
+                            Create Product
+                        </h1>
+                        <h2 className="text-lg text-slate-500 font-light">
+                            You are creating a new product.
+                        </h2>
+                    </div>
+                    <div className="w-full bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <CreateProductContent navigate={opts.navigate} />
+                    </div>
                 </div>
             )}
             icon={`ic:baseline-add`}

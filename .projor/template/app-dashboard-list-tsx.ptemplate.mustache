@@ -13,19 +13,19 @@ export function AppDashboardList(
         value: Array<string>,
     }
 ) {
-    return <div className="w-full flex flex-col justify-start items-stretch gap-2">
-        <p className="text-xl font-bold">{opts.name}</p>
-        <div className="flex flex-col justify-start items-stretch gap-2 border border-gray-300 rounded-lg">
+    return <div className="w-full flex flex-col justify-start items-stretch gap-3">
+        <p className="text-xl font-bold text-slate-800">{opts.name}</p>
+        <div className="flex flex-col justify-start items-stretch gap-0 border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
             {
                 opts.value.map((v, i) => {
                     const divClassname = classNames(
-                        "w-full flex flex-row justify-start items-center gap-2 p-2",
+                        "w-full flex flex-row justify-start items-center gap-2 px-4 py-3 hover:bg-slate-50 transition-colors duration-150",
                         {
-                            "border-b": i !== opts.value.length - 1
+                            "border-b border-slate-200": i !== opts.value.length - 1
                         }
                     )
                     return <div key={i} className={divClassname}>
-                        <p>{v}</p>
+                        <p className="text-sm text-slate-700">{v}</p>
                     </div>
                 })
             }

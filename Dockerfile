@@ -1,12 +1,16 @@
 FROM node:22 as builder
 WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
 ADD package.json /app/package.json
 ADD tsconfig.json /app/tsconfig.json
 ADD tailwind.config.js /app/tailwind.config.js
-RUN npm install
+RUN pnpm install
 ADD src /app/src
 ADD public /app/public
-RUN npm run build
+RUN pnpm run build
 
 FROM nginx:alpine as runner
 COPY --from=builder /app/public /usr/share/nginx/html
